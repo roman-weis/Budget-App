@@ -9,18 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class MainPageComponent implements OnInit {
 
   budgetItems : BudgetItem[] = new Array<BudgetItem>();
-  constructor() { }
+  total: number
+  constructor() { 
+    this.total = 0;
+  }
 
   ngOnInit(): void {
   }
 
   addItem(newItem: BudgetItem){
       this.budgetItems.push(newItem);
+      this.total += newItem.amount;
   }
 
   deleteItem(item: BudgetItem){
     let index = this.budgetItems.indexOf(item);
     this.budgetItems.splice(index, 1);
+    this.total -= item.amount;
   }
-
 }
